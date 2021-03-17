@@ -27,11 +27,12 @@ router.get('/', auth, async (req, res) => {
 // @access    Private
 router.post('/',
   auth,
-  // [
-  //   auth, [
-  //     check('title', 'Title is not empty').not().isEmpty(),
-  //   ],
-  // ],
+  [
+    auth, [
+      check('link', 'Link is not a valid URL').isURL(),
+      check('image', 'Image is not a valid URL').isURL(),
+    ],
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
