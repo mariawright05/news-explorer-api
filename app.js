@@ -1,5 +1,5 @@
 const express = require('express');
-const { check, validationResult } = require('express-validator');
+const { check } = require('express-validator');
 const connectDB = require('./config/db');
 const { registerUser, loginUser } = require('./controllers/userController');
 
