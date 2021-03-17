@@ -4,6 +4,7 @@ const connectDB = require('./config/db');
 const { registerUser, loginUser } = require('./controllers/userController');
 
 const app = express();
+const { requestLogger, errorLogger } = require('./middleware/logger');
 
 // Connect database
 connectDB();
@@ -16,11 +17,20 @@ app.get('/', (req, res) => {
 app.use(express.json({ extended: false }));
 
 // define routes
-app.use('/users', require('./routes/users'));
-app.use('/articles', require('./routes/articles'));
+const userRouter = require('./routes/users');
+const articleRouter = require('./routes/articles');
+// const NotFoundError = require('./middleware/errors/NotFoundError');
+
+app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Server will crash now');
+  }, 0);
+});
 
 // @route     POST /signup
-// @desc      Register a user
+// @desc      Register a user (name, email, password)
 // @access    Public
 app.use('/signup', [
   check('name', 'Please add name')
@@ -34,12 +44,19 @@ app.use('/signup', [
 ], registerUser);
 
 // @route     POST /signin
-// @desc      Auth user & get token
+// @desc      Auth user (email, password) & get token
 // @access    Public
 app.use('/signin', [
   check('email', 'Please include a valid email').isEmail(),
   check('password', 'Password is required').exists(),
 ], loginUser);
+
+// Private routes
+app.use('/users', userRouter);
+app.use('/articles', articleRouter);
+
+// enabling the error logger
+app.use(errorLogger);
 
 const PORT = process.env.PORT || 3000;
 
