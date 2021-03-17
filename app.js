@@ -1,11 +1,16 @@
 const express = require('express');
 const { check } = require('express-validator');
 const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
 const connectDB = require('./config/db');
+
 const { registerUser, loginUser } = require('./controllers/userController');
 
 const app = express();
 const { requestLogger, errorLogger } = require('./middleware/logger');
+
+app.use(helmet());
 
 // Connect database
 connectDB();
