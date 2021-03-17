@@ -1,5 +1,6 @@
 const express = require('express');
 const { check } = require('express-validator');
+const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 const { registerUser, loginUser } = require('./controllers/userController');
 
@@ -9,9 +10,16 @@ const { requestLogger, errorLogger } = require('./middleware/logger');
 // Connect database
 connectDB();
 
-app.get('/', (req, res) => {
-  res.json({ msg: 'Welcome to the News Explorer API' });
+// Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+app.set('trust proxy', 1);
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
 });
+
+//  apply to all requests
+app.use(limiter);
 
 // init middleware
 app.use(express.json({ extended: false }));
