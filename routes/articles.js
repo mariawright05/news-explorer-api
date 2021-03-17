@@ -8,7 +8,7 @@ const Article = require('../models/article');
 const router = express.Router();
 // const { check, validationResult } = require('express-validator/check');
 
-// @route     GET api/articles
+// @route     GET /articles
 // @desc      Get all articles saved by user
 // @access    Private
 router.get('/', auth, async (req, res) => {
@@ -22,7 +22,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// @route     POST api/articles
+// @route     POST /articles
 // @desc      Creates article with passed keyword, title, text, date source, link, and image
 // @access    Private
 router.post('/',
@@ -70,7 +70,7 @@ router.post('/',
     }
   });
 
-// @route     DELETE api/articles
+// @route     DELETE /articles
 // @desc      Deletes a stored article by _id
 // @access    Private
 router.delete('/:articleId', auth, async (req, res) => {
