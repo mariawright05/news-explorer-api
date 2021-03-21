@@ -23,10 +23,6 @@ class ApiError {
   static conflictError(msg) {
     return new ApiError(409, msg);
   }
-
-  // static serverError(msg) {
-  //   return new ApiError(500, msg);
-  // }
 }
 
 module.exports = ApiError;

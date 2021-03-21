@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
 
   // Check if not token
   if (!token) {
-    next(authError('No token, authorization denied'));
+    next(authError('No token, authorization required'));
     return;
   }
 
@@ -21,6 +21,6 @@ module.exports = (req, res, next) => {
     req.user = decoded.user;
     next();
   } catch (err) {
-    next(validationError('Wrong token, authorization denied'));
+    next(validationError('Wrong token, authorization required'));
   }
 };
