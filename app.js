@@ -1,9 +1,8 @@
 const express = require('express');
 const { check } = require('express-validator');
-const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const apiErrorHandler = require('./middleware/errors/apiErrorHandler');
-
+const limiter = require('./middleware/limiter');
 const connectDB = require('./config/db');
 
 const { registerUser, loginUser } = require('./controllers/userController');
@@ -18,11 +17,6 @@ connectDB();
 
 // Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
 app.set('trust proxy', 1);
-
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-});
 
 //  apply to all requests
 app.use(limiter);
