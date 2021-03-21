@@ -19,6 +19,11 @@ router.post('/',
     auth, [
       check('link', 'Link is not a valid URL').isURL(),
       check('image', 'Image is not a valid URL').isURL(),
+      check('title', 'Title is required').not().isEmpty(),
+      check('text', 'Text is required').not().isEmpty(),
+      check('date', 'Date is required').not().isEmpty(),
+      check('source', 'Source is required').not().isEmpty(),
+      check('keyword', 'Keyword is required').not().isEmpty(),
     ],
   ], createArticle);
 

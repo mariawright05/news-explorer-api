@@ -27,6 +27,7 @@ const articleSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => validator.isURL(v, [{ allow_underscores: true }]),
+      message: 'Please enter a valid URL',
     },
   },
   image: {
@@ -34,35 +35,15 @@ const articleSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => validator.isURL(v, [{ allow_underscores: true }]),
+      message: 'Please enter a valid URL',
     },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users',
-    // the _id of the user who saved the article.
-    // You need to set the default behavior so that the database doesn't return this field.
   },
 });
 
-// articleSchema.statics.findUserByCredentials = function findUserByCredentials(email, password) {
-//   return this.findOne({ email }).select('+password')
-//     .then((user) => {
-//       if (!user) {
-//         return Promise.reject(new Error('Incorrect email or password'));
-//       }
-
-//       return bcrypt.compare(password, user.password)
-//         .then((matched) => {
-//           if (!matched) {
-//             return Promise.reject(new Error('Incorrect email or password'));
-//           }
-
-//           return user;
-//         });
-//     });
-// };
-
-// eslint-disable-next-line func-names
 articleSchema.methods.toJSON = function () {
   const obj = this.toObject();
   delete obj.owner;

@@ -2,6 +2,7 @@ const express = require('express');
 const { check } = require('express-validator');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
+const apiErrorHandler = require('./middleware/errors/apiErrorHandler');
 
 const connectDB = require('./config/db');
 
@@ -70,6 +71,8 @@ app.use('/articles', articleRouter);
 
 // enabling the error logger
 app.use(errorLogger);
+
+app.use(apiErrorHandler);
 
 const PORT = process.env.PORT || 3000;
 
