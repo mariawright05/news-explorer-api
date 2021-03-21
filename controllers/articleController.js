@@ -75,7 +75,7 @@ const deleteArticle = async (req, res, next) => {
 
     res.json({ msg: 'Article removed' });
   } catch (err) {
-    next(validationError('Article id is not valid'));
+    next(validationError('Invalid article ID'));
   } finally {
     next();
   }
