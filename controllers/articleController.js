@@ -1,7 +1,5 @@
 const { validationResult } = require('express-validator');
 const { validationError, notFoundError, authError } = require('../middleware/errors/ApiError');
-
-// const User = require('../models/user');
 const Article = require('../models/article');
 
 // @route     GET /articles
@@ -10,7 +8,6 @@ const Article = require('../models/article');
 const getArticles = async (req, res, next) => {
   try {
     const articles = await Article.find({ owner: req.user.id });
-
     res.json(articles);
   } catch (err) {
     next();
@@ -23,7 +20,6 @@ const getArticles = async (req, res, next) => {
 const createArticle = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    // return res.status(400).json({ errors: errors.array() });
     next(validationError({ errors: errors.array() }));
   }
 
