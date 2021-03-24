@@ -1,13 +1,11 @@
 const express = require('express');
-// const { check } = require('express-validator');
 const helmet = require('helmet');
 const path = require('path');
+const compression = require('compression');
 const apiErrorHandler = require('./middleware/errors/apiErrorHandler');
 const limiter = require('./middleware/limiter');
 const connectDB = require('./config/db');
 const routes = require('./routes');
-
-// const { registerUser, loginUser } = require('./controllers/userController');
 
 const app = express();
 const { requestLogger, errorLogger } = require('./middleware/logger');
@@ -26,10 +24,6 @@ app.use(limiter);
 // init middleware
 app.use(express.json({ extended: false }));
 
-// // define routes
-// const userRouter = require('./routes/users');
-// const articleRouter = require('./routes/articles');
-
 app.use(requestLogger);
 
 app.get('/crash-test', () => {
@@ -38,33 +32,9 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
+app.use(compression());
+
 app.use(routes);
-
-// // @route     POST /signup
-// // @desc      Register a user (name, email, password)
-// // @access    Public
-// app.use('/signup', [
-//   check('name', 'Please add name')
-//     .not()
-//     .isEmpty(),
-//   check('email', 'Please include a valid email').isEmail(),
-//   check(
-//     'password',
-//     'Please enter a password with 6 or more characters',
-//   ).isLength({ min: 6 }),
-// ], registerUser);
-
-// // @route     POST /signin
-// // @desc      Auth user (email, password) & get token
-// // @access    Public
-// app.use('/signin', [
-//   check('email', 'Please include a valid email').isEmail(),
-//   check('password', 'Password is required').exists(),
-// ], loginUser);
-
-// // Private routes
-// app.use('/users', userRouter);
-// app.use('/articles', articleRouter);
 
 // enabling the error logger
 app.use(errorLogger);
