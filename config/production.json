@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://mariawright:ijmagnm@news-explorer.qwfup.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  "JWT_SECRET": "theverybiggestsecret"
-}
