@@ -1,0 +1,43 @@
+{
+  "name": "news-explorer-api",
+  "version": "1.0.0",
+  "description": "A service where users can search for news articles and save them to their profiles.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariawright05/news-explorer-api.git"
+  },
+  "author": "Maria Wright",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariawright05/news-explorer-api/issues"
+  },
+  "homepage": "https://github.com/mariawright05/news-explorer-api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.6",
+    "express-validator": "^6.10.0",
+    "express-winston": "^4.1.0",
+    "helmet": "^4.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.0",
+    "validator": "^13.5.2",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7"
+  },
+  "engines": {
+    "node": "12.18.3"
+  }
+}
