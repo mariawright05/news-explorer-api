@@ -1,6 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
-const path = require('path');
+// const path = require('path');
 const compression = require('compression');
 const apiErrorHandler = require('./middleware/errors/apiErrorHandler');
 const limiter = require('./middleware/limiter');
@@ -41,12 +41,13 @@ app.use(errorLogger);
 
 app.use(apiErrorHandler);
 
-// Serve static assets in production
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static('frontend/build'));
-  app.use('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')));
-}
+// // Serve static assets in production
+// if (process.env.NODE_ENV === 'production') {
+//   // Set static folder
+//   app.use(express.static('frontend/build'));
+//   app.use('*', (req, res) => res.sendFile(path
+//     .resolve(__dirname, 'frontend', 'build', 'index.html')));
+// }
 
 const PORT = process.env.PORT || 3000;
 
