@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { NODE_ENV, JWT_SECRET, MONGO_URI } = process.env;
 
 const mongoServer = NODE_ENV === 'production' ? MONGO_URI : 'mongodb://localhost:27017/myFirstDatabase';
