@@ -3,8 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const { validationResult } = require('express-validator');
-
-const { JWT_SECRET } = process.env;
+const { secretKey } = require('../config/utils');
 
 const User = require('../models/user');
 const { notFoundError, validationError, conflictError } = require('../middleware/errors/ApiError');
@@ -63,7 +62,7 @@ const registerUser = async (req, res, next) => {
       },
     };
 
-    jwt.sign(payload, JWT_SECRET, {
+    jwt.sign(payload, secretKey, {
       expiresIn: '7d',
       // change error
     }, (err, token) => {
@@ -104,7 +103,7 @@ const loginUser = async (req, res, next) => {
       },
     };
 
-    jwt.sign(payload, JWT_SECRET, {
+    jwt.sign(payload, secretKey, {
       expiresIn: '7d',
       // change error
     }, (err, token) => {
