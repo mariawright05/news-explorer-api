@@ -69,7 +69,7 @@ const deleteArticle = async (req, res, next) => {
 
     await Article.findByIdAndRemove(req.params.articleId);
 
-    res.json({ msg: 'Article removed' });
+    res.json('Article removed');
   } catch (err) {
     next(validationError('Invalid article ID'));
   } finally {

@@ -67,7 +67,7 @@ const registerUser = async (req, res, next) => {
       // change error
     }, (err, token) => {
       if (err) throw (err);
-      res.json({ token });
+      res.send({ name, email });
     });
   } catch (err) {
     next();
