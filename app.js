@@ -16,11 +16,11 @@ app.use(helmet());
 
 const corsOptions = {
   origin: '*',
-  // credentials: true,
+  credentials: true,
   optionSuccessStatus: 200,
 };
+app.options('*', cors());
 app.use(express.json(), cors(corsOptions));
-// app.options('*', cors());
 
 // Connect database
 connectDB();
