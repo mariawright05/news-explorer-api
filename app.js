@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
+const cors = require('cors');
 // const path = require('path');
 const compression = require('compression');
 const apiErrorHandler = require('./middleware/errors/apiErrorHandler');
@@ -12,6 +13,14 @@ const app = express();
 const { requestLogger, errorLogger } = require('./middleware/logger');
 
 app.use(helmet());
+
+const corsOptions = {
+  origin: '*',
+  // credentials: true,
+  optionSuccessStatus: 200,
+};
+app.use(express.json(), cors(corsOptions));
+// app.options('*', cors());
 
 // Connect database
 connectDB();
