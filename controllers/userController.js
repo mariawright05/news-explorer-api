@@ -35,7 +35,7 @@ const registerUser = async (req, res, next) => {
     next(validationError({ error: errors.array() }));
   }
 
-  const { name, email, password } = req.body;
+  const { email, password, name } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -64,10 +64,9 @@ const registerUser = async (req, res, next) => {
 
     jwt.sign(payload, secretKey, {
       expiresIn: '7d',
-      // change error
-    }, (err) => {
+    }, (err, token) => {
       if (err) throw (err);
-      res.send({ name, email });
+      res.send({ name, token });
     });
   } catch (err) {
     next();
