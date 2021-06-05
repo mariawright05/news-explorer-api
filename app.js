@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
-// const path = require('path');
 const compression = require('compression');
+// const path = require('path');
 const apiErrorHandler = require('./middleware/errors/apiErrorHandler');
 const limiter = require('./middleware/limiter');
 const connectDB = require('./config/db');
@@ -55,10 +55,9 @@ app.use(apiErrorHandler);
 // if (process.env.NODE_ENV === 'production') {
 //   // Set static folder
 //   app.use(express.static('frontend/build'));
-//   app.use('*', (req, res) => res.sendFile(path
-//     .resolve(__dirname, 'frontend', 'build', 'index.html')));
+//   app.use('*', (req, res) => res.sendFile(path.resolve('/Users/mariawright/dev/news-explorer-frontend/public/index.html')));
 // }
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

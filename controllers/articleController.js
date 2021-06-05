@@ -15,7 +15,7 @@ const getArticles = async (req, res, next) => {
 };
 
 // @route     POST /articles
-// @desc      Creates article with passed keyword, title, text, date source, link, and image
+// @desc      Creates article with passed keyword, title, text, date source, url, and image
 // @access    Private
 const createArticle = async (req, res, next) => {
   const errors = validationResult(req);
@@ -29,7 +29,7 @@ const createArticle = async (req, res, next) => {
     text,
     date,
     source,
-    link,
+    url,
     image,
   } = req.body;
 
@@ -40,7 +40,7 @@ const createArticle = async (req, res, next) => {
       text,
       date,
       source,
-      link,
+      url,
       image,
       owner: req.user.id,
     });

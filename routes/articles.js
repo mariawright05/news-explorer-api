@@ -11,13 +11,13 @@ const router = express.Router();
 router.get('/', auth, getArticles);
 
 // @route     POST /articles
-// @desc      Creates article with passed keyword, title, text, date source, link, and image
+// @desc      Creates article with passed keyword, title, text, date source, url, and image
 // @access    Private
 router.post('/',
   auth,
   [
     auth, [
-      check('link', 'Link is not a valid URL').isURL(),
+      check('url', 'URL is not a valid URL').isURL(),
       check('image', 'Image is not a valid URL').isURL(),
       check('title', 'Title is required').not().isEmpty(),
       check('text', 'Text is required').not().isEmpty(),

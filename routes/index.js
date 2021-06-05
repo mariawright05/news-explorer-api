@@ -10,14 +10,14 @@ const articleRouter = require('./articles');
 // @desc      Register a user (name, email, password)
 // @access    Public
 router.use('/api/signup', [
-  check('name', 'Please add name')
-    .not()
-    .isEmpty(),
   check('email', 'Please include a valid email').isEmail(),
   check(
     'password',
-    'Please enter a password with 6 or more characters',
-  ).isLength({ min: 6 }),
+    'Please enter a password with 8 or more characters',
+  ).isLength({ min: 8 }),
+  check('name', 'Please add name')
+    .not()
+    .isEmpty(),
 ], registerUser);
 
 // @route     POST /signin

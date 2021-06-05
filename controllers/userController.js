@@ -64,9 +64,9 @@ const registerUser = async (req, res, next) => {
 
     jwt.sign(payload, secretKey, {
       expiresIn: '7d',
-    }, (err, token) => {
+    }, (err) => {
       if (err) throw (err);
-      res.send({ name, token });
+      res.send({ name, email });
     });
   } catch (err) {
     next();
@@ -104,7 +104,6 @@ const loginUser = async (req, res, next) => {
 
     jwt.sign(payload, secretKey, {
       expiresIn: '7d',
-      // change error
     }, (err, token) => {
       if (err) throw (err);
       res.json({ token });
