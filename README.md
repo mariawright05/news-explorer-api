@@ -1,6 +1,6 @@
 # News Explorer App
 
-![NewsExplorer Screenshot](https://github.com/mariawright05/news-explorer-frontend/src/images/app-graphic.jpg)
+![NewsExplorer Screenshot](https://github.com/mariawright05/news-explorer-frontend/blob/main/src/images/app-graphic.jpg)
 
 This project is a service where users can search for news articles and save them to their profiles.
 
